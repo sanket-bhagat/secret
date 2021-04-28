@@ -72,7 +72,8 @@ passport.use(new GoogleStrategy({
 ));
 
 app.get("/",function(req,res){
-    res.render("home");
+    if(req.isAuthenticated()) res.redirect("/secrets");
+    else res.render("home");
 });
 
 app.get("/auth/google",
@@ -87,8 +88,8 @@ app.get("/auth/google/secrets",
 });
 
 app.get("/login",function(req,res){
-    if(req.isAuthenticated()) res.render("submit");
-    else res.redirect("/login");
+    if(req.isAuthenticated()) res.redirect("/secrets");
+    else res.render("login");
 });
 
 app.get("/register",function(req,res){
