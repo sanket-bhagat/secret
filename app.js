@@ -87,7 +87,8 @@ app.get("/auth/google/secrets",
 });
 
 app.get("/login",function(req,res){
-    res.render("login");
+    if(req.isAuthenticated()) res.render("submit");
+    else res.redirect("/login");
 });
 
 app.get("/register",function(req,res){
